@@ -1,8 +1,40 @@
 
-// VINTAGE CEYLON MEDIA GALLERY
+// ==========================================
+// VINTAGE CEYLON EVENTS & EXPERIENCES
+// DIGITAL MEDIA GALLERY
+// ==========================================
 
-// Add your photos and videos here.
-// The cover is the thumbnail visitors see before clicking.
+
+// VIDEO LINKS - GOOGLE DRIVE
+
+const videoLinks = {
+
+    "mice-expo": "https://drive.google.com/file/d/1UuqvpPVi7bu1ThAPFP9JanralsPeB2ZW/preview",
+
+    "port-city": "https://drive.google.com/file/d/1Zy_urRDJgNSGI1VOxR84TCfDiSx_jjrT/preview",
+
+    "batik": "https://drive.google.com/file/d/1iJWjTSnoVQzhZR1WWgwphrIwW-eBf74I/preview",
+
+    "tie-dye": "https://drive.google.com/file/d/1OFYkrvYp_jLF9aMKjPi6jed0vMLStO0Z/preview",
+
+    "pottery": "https://drive.google.com/file/d/1BiO_vixziHw-JvUOvFkr2Ki8lLGJ3wlQ/preview",
+
+    "tea-tasting": "https://drive.google.com/file/d/1lT-hBILqrNvzhfZlOmv4eaivlzaFitWB/preview",
+
+    "gem-cutting": "https://drive.google.com/file/d/1drNh_vyQDeG_yQgdiRlOoQ-zXBmbBdLq/preview",
+
+    "police-summit": "https://drive.google.com/file/d/13GzVzztPt__Rbc0bLOaR_59peawHBe7_/preview",
+
+    "angampora": "https://drive.google.com/file/d/1XaOfPs4ulkqiNR-LKaoyRkwCXuhxHrdy/preview",
+
+    "traditional-dancing": "https://drive.google.com/file/d/1L9sUtqcyvdRr5rrcL00JVDyugwP6HiYc/preview"
+
+};
+
+
+// ==========================================
+// MEDIA ITEMS
+// ==========================================
 
 const mediaItems = [
 
@@ -10,7 +42,7 @@ const mediaItems = [
         title: "MICE Expo 2026 – Visitors",
         category: "events",
         type: "video",
-        src: "videos/mice-expo.mp4",
+        videoKey: "mice-expo",
         cover: "images/mice-expo.png"
     },
 
@@ -18,7 +50,7 @@ const mediaItems = [
         title: "MICE Expo 2026 – Port City",
         category: "events",
         type: "video",
-        src: "videos/port-city.mp4",
+        videoKey: "port-city",
         cover: "images/port-city.png"
     },
 
@@ -26,7 +58,7 @@ const mediaItems = [
         title: "Batik Sessions",
         category: "workshops",
         type: "video",
-        src: "videos/batik.mp4",
+        videoKey: "batik",
         cover: "images/batik.png"
     },
 
@@ -34,7 +66,7 @@ const mediaItems = [
         title: "Tie & Dye Session",
         category: "workshops",
         type: "video",
-        src: "videos/tie-dye.mp4",
+        videoKey: "tie-dye",
         cover: "images/tie-dye.png"
     },
 
@@ -42,7 +74,7 @@ const mediaItems = [
         title: "Traditional Pottery",
         category: "workshops",
         type: "video",
-        src: "videos/pottery.mp4",
+        videoKey: "pottery",
         cover: "images/pottery.png"
     },
 
@@ -50,7 +82,7 @@ const mediaItems = [
         title: "Ceylon Tea Tasting",
         category: "experiences",
         type: "video",
-        src: "videos/tea-tasting.mp4",
+        videoKey: "tea-tasting",
         cover: "images/tea-tasting.png"
     },
 
@@ -58,7 +90,7 @@ const mediaItems = [
         title: "Gem Cutting",
         category: "experiences",
         type: "video",
-        src: "videos/gem-cutting.mp4",
+        videoKey: "gem-cutting",
         cover: "images/gem-cutting.png"
     },
 
@@ -66,7 +98,7 @@ const mediaItems = [
         title: "Wellness Experiences",
         category: "experiences",
         type: "video",
-        src: "videos/wellness.mp4",
+        videoKey: null,
         cover: "images/wellness.png"
     },
 
@@ -74,7 +106,7 @@ const mediaItems = [
         title: "69th IPA World Congress",
         category: "events",
         type: "video",
-        src: "videos/police-summit.mp4",
+        videoKey: "police-summit",
         cover: "images/police-summit.png"
     },
 
@@ -82,7 +114,7 @@ const mediaItems = [
         title: "Angampora",
         category: "culture",
         type: "video",
-        src: "videos/angampora.mp4",
+        videoKey: "angampora",
         cover: "images/angampora.png"
     },
 
@@ -90,14 +122,16 @@ const mediaItems = [
         title: "Traditional Dancing",
         category: "culture",
         type: "video",
-        src: "videos/traditional-dancing.mp4",
+        videoKey: "traditional-dancing",
         cover: "images/traditional-dancing.png"
     }
 
 ];
 
 
+// ==========================================
 // GALLERY ELEMENTS
+// ==========================================
 
 const galleryGrid = document.getElementById("galleryGrid");
 
@@ -105,16 +139,25 @@ const mediaPopup = document.getElementById("mediaPopup");
 
 const popupContent = document.getElementById("popupContent");
 
+const closePopupButton = document.getElementById("closePopup");
 
+
+// ==========================================
 // DISPLAY GALLERY
+// ==========================================
 
 function displayGallery(category = "all") {
+
+    if (!galleryGrid) return;
 
     galleryGrid.innerHTML = "";
 
     const filteredItems = mediaItems.filter(item => {
+
         return category === "all" || item.category === category;
+
     });
+
 
     filteredItems.forEach(item => {
 
@@ -122,11 +165,17 @@ function displayGallery(category = "all") {
 
         card.className = "gallery-card";
 
+
+        // IMAGE BUTTON
+
         const button = document.createElement("button");
 
         button.className = "gallery-image";
 
         button.type = "button";
+
+
+        // COVER IMAGE
 
         const image = document.createElement("img");
 
@@ -137,8 +186,11 @@ function displayGallery(category = "all") {
         image.loading = "lazy";
 
         image.onerror = () => {
+
             image.style.display = "none";
+
             button.style.background = "#ded8cf";
+
         };
 
         button.appendChild(image);
@@ -159,17 +211,23 @@ function displayGallery(category = "all") {
         }
 
 
-        // OPEN MEDIA WHEN CLICKED
+        // OPEN MEDIA
 
         button.addEventListener("click", () => {
+
             openMedia(item);
+
         });
 
+
+        // TITLE
 
         const title = document.createElement("h3");
 
         title.textContent = item.title;
 
+
+        // LABEL
 
         const label = document.createElement("p");
 
@@ -177,6 +235,8 @@ function displayGallery(category = "all") {
             ? "WATCH VIDEO"
             : "VIEW PHOTO";
 
+
+        // ADD ELEMENTS
 
         card.appendChild(button);
 
@@ -191,79 +251,150 @@ function displayGallery(category = "all") {
 }
 
 
+// ==========================================
 // OPEN VIDEO OR PHOTO
+// ==========================================
 
 function openMedia(item) {
 
+    if (!popupContent || !mediaPopup) return;
+
     popupContent.innerHTML = "";
 
-    let media;
+
+    // GOOGLE DRIVE VIDEO
 
     if (item.type === "video") {
 
-        media = document.createElement("video");
+        const videoUrl = videoLinks[item.videoKey];
 
-        media.src = item.src;
 
-        media.controls = true;
+        // VIDEO LINK NOT AVAILABLE
 
-        media.autoplay = true;
+        if (!videoUrl) {
 
-        media.playsInline = true;
+            const message = document.createElement("p");
+
+            message.textContent = "This video will be available soon.";
+
+            message.style.textAlign = "center";
+
+            message.style.padding = "30px";
+
+            popupContent.appendChild(message);
+
+        } else {
+
+            const iframe = document.createElement("iframe");
+
+            iframe.src = videoUrl;
+
+            iframe.title = item.title;
+
+            iframe.allow = "autoplay; encrypted-media; fullscreen; picture-in-picture";
+
+            iframe.allowFullscreen = true;
+
+            iframe.loading = "eager";
+
+            iframe.referrerPolicy = "strict-origin-when-cross-origin";
+
+            iframe.style.width = "100%";
+
+            iframe.style.height = "100%";
+
+            iframe.style.border = "0";
+
+            iframe.style.display = "block";
+
+
+            popupContent.appendChild(iframe);
+
+        }
 
     } else {
 
-        media = document.createElement("img");
+        // PHOTO
 
-        media.src = item.src;
+        const image = document.createElement("img");
 
-        media.alt = item.title;
+        image.src = item.src;
+
+        image.alt = item.title;
+
+        popupContent.appendChild(image);
 
     }
 
-    popupContent.appendChild(media);
+
+    // SHOW POPUP
 
     mediaPopup.classList.add("show");
 
 }
 
 
+// ==========================================
 // CLOSE POPUP
+// ==========================================
 
 function closeMedia() {
 
-    const video = popupContent.querySelector("video");
+    if (!popupContent || !mediaPopup) return;
 
-    if (video) {
-        video.pause();
-    }
 
-    mediaPopup.classList.remove("show");
+    // Removing iframe stops video playback
 
     popupContent.innerHTML = "";
 
+
+    mediaPopup.classList.remove("show");
+
 }
 
-document.getElementById("closePopup").addEventListener("click", closeMedia);
 
-mediaPopup.addEventListener("click", function(event) {
+// CLOSE BUTTON
 
-    if (event.target === mediaPopup) {
-        closeMedia();
-    }
+if (closePopupButton) {
 
-});
+    closePopupButton.addEventListener("click", closeMedia);
+
+}
+
+
+// CLICK OUTSIDE POPUP
+
+if (mediaPopup) {
+
+    mediaPopup.addEventListener("click", function(event) {
+
+        if (event.target === mediaPopup) {
+
+            closeMedia();
+
+        }
+
+    });
+
+}
+
+
+// ESCAPE KEY
 
 document.addEventListener("keydown", function(event) {
 
     if (event.key === "Escape") {
+
         closeMedia();
+
     }
 
 });
 
 
+// ==========================================
 // CATEGORY FILTER BUTTONS
+// ==========================================
 
 const filterButtons = document.querySelectorAll(".filter-btn");
 
@@ -271,10 +402,24 @@ filterButtons.forEach(button => {
 
     button.addEventListener("click", function() {
 
-        document.querySelector(".filter-btn.active")
-            .classList.remove("active");
+
+        // REMOVE PREVIOUS ACTIVE CLASS
+
+        const activeButton = document.querySelector(".filter-btn.active");
+
+        if (activeButton) {
+
+            activeButton.classList.remove("active");
+
+        }
+
+
+        // SET NEW ACTIVE BUTTON
 
         this.classList.add("active");
+
+
+        // DISPLAY SELECTED CATEGORY
 
         const selectedCategory = this.dataset.filter;
 
@@ -285,6 +430,8 @@ filterButtons.forEach(button => {
 });
 
 
-// LOAD ALL ITEMS WHEN PAGE OPENS
+// ==========================================
+// LOAD GALLERY WHEN PAGE OPENS
+// ==========================================
 
 displayGallery();
