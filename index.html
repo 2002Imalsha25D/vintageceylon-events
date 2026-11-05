@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Events & Experiences | Vintage Ceylon</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <a href="https://www.vintageceylon.lk/en" class="logo">
+            <img src="images/logo.png" alt="Vintage Ceylon">
+        </a>
+
+        <nav>
+            <a href="https://www.vintageceylon.lk/en">HOME</a>
+            <a href="#gallery">OUR EXPERIENCES</a>
+            <a href="https://www.vintageceylon.lk/en">VISIT US</a>
+        </nav>
+    </header>
+
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <p class="small-title">VINTAGE CEYLON · EVENTS & RETAIL</p>
+
+            <h1>THE STORIES<br>OF CEYLON</h1>
+
+            <p class="hero-description">
+                Celebrating culture, creativity and unforgettable experiences.
+            </p>
+
+            <a href="#gallery" class="explore-btn">EXPLORE OUR MOMENTS</a>
+
+        </div>
+
+    </section>
+
+
+    <!-- GALLERY SECTION -->
+    <section class="gallery-section" id="gallery">
+
+        <div class="section-heading">
+            <p class="small-title">OUR JOURNEY</p>
+
+            <h2>Moments at Vintage Ceylon</h2>
+
+            <p>
+                Discover the events, workshops and cultural experiences
+                that bring the stories of Sri Lanka to life.
+            </p>
+        </div>
+
+
+        <!-- CATEGORY FILTERS -->
+        <div class="filters">
+
+            <button class="filter-btn active" data-filter="all">ALL</button>
+
+            <button class="filter-btn" data-filter="events">EVENTS</button>
+
+            <button class="filter-btn" data-filter="workshops">WORKSHOPS</button>
+
+            <button class="filter-btn" data-filter="culture">CULTURE</button>
+
+            <button class="filter-btn" data-filter="experiences">EXPERIENCES</button>
+
+        </div>
+
+
+        <!-- PHOTOS AND VIDEOS WILL LOAD HERE -->
+        <div class="gallery-grid" id="galleryGrid"></div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <h2>VINTAGE CEYLON</h2>
+
+        <p>Experience the Soul of Ceylon</p>
+
+        <a href="https://www.vintageceylon.lk/en">
+            www.vintageceylon.lk
+        </a>
+
+        <p class="copyright">
+            © 2026 Vintage Ceylon. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- VIDEO / PHOTO POPUP -->
+    <div class="media-popup" id="mediaPopup">
+
+        <button class="close-btn" id="closePopup">&times;</button>
+
+        <div id="popupContent"></div>
+
+    </div>
+
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>
